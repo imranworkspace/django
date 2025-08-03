@@ -1,0 +1,35 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Registration</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        form {
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post" novalidate>
+        <h2>Student Registration Form</h2>
+       
+        {% csrf_token %} 
+        <!-- for bootstrap -->
+        {{ fm|crispy }} 
+        <!-- {{fm.as_p}} -->
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+        
+    </form>
+</body>
+</html>
