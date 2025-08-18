@@ -20,5 +20,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/docker_dir/staticfiles  # Correct this mapping
+    depends_on:
+      - web
+
+
 volumes:
   postgres_data:
+  static_volume:

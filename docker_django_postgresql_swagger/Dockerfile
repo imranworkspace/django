@@ -17,3 +17,7 @@ RUN pip install -r requirnments.txt
 
 # Copy project files
 COPY . /docker_dir/
+
+
+# Collect static files
+RUN python manage.py collectstatic --noinput

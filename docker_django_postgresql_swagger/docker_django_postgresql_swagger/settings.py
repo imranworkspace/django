@@ -131,8 +131,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # Optional, if you have custom static files
 ]
-STATIC_ROOT = BASE_DIR / "staticfiles"  # Where collectstatic will dump everything
-
+#STATIC_ROOT = BASE_DIR / "staticfiles"  # Where collectstatic will dump everything
+STATIC_ROOT = '/docker_dir/staticfiles'  # Correct this path
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
