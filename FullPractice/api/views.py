@@ -1,0 +1,86 @@
+from django.shortcuts import render,HttpResponseRedirect,redirect,HttpResponse
+from .models import StudentModel
+from .studentform import StudentForm,LoginForm
+
+registration_page="reg.html"
+login_page="login.html"
+login_url='login'
+home_url='home'
+home_page='home.html'
+
+def registrationForm(request):
+    if request.method=='POST':
+        fm=StudentForm(request.POST)
+        if fm.is_valid():
+            nm=fm.cleaned_data['name']
+            em=fm.cleaned_data['email']
+            pw=fm.cleaned_data['password']
+            # put data into db 
+            stud_create=StudentModel(name=nm,email=em,password=pw)
+            stud_create.save()
+            return redirect(login_url)
+        else:
+            return render(request,registration_page, {"fm": fm})
+    else:
+        fm=StudentForm()
+        return render(request,registration_page,{'fm':fm})
+
+def homepage(request):
+    fname = request.session.get('name','guest')
+    if fname=='guest':
+        print('if')
+        print(fname)
+        return redirect(login_url)
+    else:
+        keys=request.session.keys()
+        items=request.session.items()
+        getexpireatbrowser = request.session.get_expire_at_browser_close()
+        get_expiry_age = request.session.get_expiry_age()
+        expiry_date = request.session.get_expiry_date()
+        return render(request,home_page,{'fname':fname,'keys':keys,'items':items,'getexpireatbrowser':getexpireatbrowser,'expiry_date':expiry_date,
+    'get_expiry_age':get_expiry_age})
+
+def login(request):
+    fname = request.session.get('name','guest')
+    if fname=='guest':
+        print('if guest')
+        if request.method=='POST':
+            fm=LoginForm(request.POST)
+            if fm.is_valid():
+                nm=fm.cleaned_data['name']
+                pw=fm.cleaned_data['password']
+                try:
+                    student_chk = StudentModel.objects.get(name=nm,password=pw)
+                    print('student_chk',student_chk)
+
+                    # set session with name for 10 seconds
+                    request.session['name']=nm
+                    request.session.set_expiry(50)# for 50 seconds
+                    return redirect(home_url)
+                except StudentModel.DoesNotExist:
+                    return HttpResponse("""
+                        <html>
+                            <body>
+                                <h3 style="color:red;">Login Failed</h3>
+                                <p>You will be redirected shortly in 3 seconds...</p>
+                                <script>
+                                    setTimeout(function(){
+                                        window.location.href = '/login/';
+                                    }, 3000);  // 3 seconds
+                                </script>
+                            </body>
+                        </html>
+                    """)
+                
+            else:
+                return render(request, login_page, {"fm": fm})
+        else:
+            fm=LoginForm()
+            return render(request,login_page,{'fm':fm})
+    else:
+        return redirect(home_url)
+    
+def logout(request):
+    request.session.flush()
+    request.session.clear()
+    return render(request,'logout.html')
