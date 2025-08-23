@@ -3,8 +3,7 @@ version: '3.9'
 services:
   web:
     build: .
-    #command: gunicorn FullPractice.wsgi:application --bind 0.0.0.0:8002
-    command:  /entrypoint.sh
+    #command:  /entrypoint.sh
     volumes:
       - .:/fullpractice
     ports:

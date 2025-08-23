@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'api',
 ]
 
@@ -90,7 +89,7 @@ DATABASES = {
         'NAME': 'fpractice_db',
         'USER': 'postgres',# your username
         'PASSWORD': 'imrandell',
-        'HOST': 'fullPractice-db-1',  # Or your DB host if using Docker or remote DB
+        'HOST': 'db',  # Or your DB host if using Docker or remote DB
         'PORT': '5432',       # Default PostgreSQL port
     }
 }
