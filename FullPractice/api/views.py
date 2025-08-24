@@ -15,6 +15,49 @@ def registrationForm(request):
             nm=fm.cleaned_data['name']
             em=fm.cleaned_data['email']
             pw=fm.cleaned_data['password']
+            pincode=fm.cleaned_data['pincode']
+            dob=fm.cleaned_data['dob']
+            appointment_time = fm.cleaned_data['appointment_time']
+            appointment_date=fm.cleaned_data['appointment_date']
+            appointment_datetime=fm.cleaned_data['appointment_datetime']
+            is_agreed=fm.cleaned_data['is_agreed']
+            agree_terms=fm.cleaned_data['agree_terms']
+            gender=fm.cleaned_data['gender']
+            interests=fm.cleaned_data['interests']
+            profile_image=fm.cleaned_data['profile_image']
+            resume=fm.cleaned_data['resume']
+            website=fm.cleaned_data['website']
+            mobile_no=fm.cleaned_data['mobile_no']
+            
+            slug=fm.cleaned_data['slug']
+            ip_address=fm.cleaned_data['ip_address']
+            rating=fm.cleaned_data['rating']
+            content=fm.cleaned_data['content']
+            
+            marriedornot=fm.cleaned_data['marriedornot']
+            split_date_time=fm.cleaned_data['split_date_time']
+
+            print('pincode',pincode)
+            print('dob',dob)
+            print('appointment_time',appointment_time)
+            print('appointment_date',appointment_date)
+            print('appointment_datetime',appointment_datetime)
+            print('is_agreed',is_agreed)
+            print('agree_terms',agree_terms)
+            print('gender',gender)
+            print('interests',interests)
+            print('profile_image',profile_image)
+            print('resume',resume)
+            print('website',website)
+            print('mobile_no',mobile_no)
+            print('slug',slug)
+            print('ip_address',ip_address)
+            print('rating',rating)
+            print('content',content)
+         
+            print('marriedornot',marriedornot)
+            print('split_date_time',split_date_time)
+
             # put data into db 
             stud_create=StudentModel(name=nm,email=em,password=pw)
             stud_create.save()

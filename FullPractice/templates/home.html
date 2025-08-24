@@ -8,11 +8,13 @@
 <body>
     
     <center>
-    <h2>Homepage</h2>
-    {% csrf_token %}
-    <h1>{{fname}}</h1>
-    <a href="http://127.0.0.1:80/logout/">Logout</a> <br>   <br>
-    <a href="http://127.0.0.1:80/login/">Login Page</a> <br>
+        <h2>Homepage</h2>
+        {% csrf_token %}
+        <h1>{{fname}}</h1>
+        
+        <a href="http://127.0.0.1:80/logout/" class="link-underline-info">Logout</a>  |  
+        <a href="http://127.0.0.1:80/login/" class="link-underline-info">Login Page</a>
+        <br>
     </center>
     <hr>
      <h2>keys</h2>
@@ -30,5 +32,7 @@
     <b>expiry_date</b> {{expiry_date}} <br><br>
 
     <b>get_expiry_age</b> {{get_expiry_age}}
+    <br>
+    <hr>
 </body>
 </html>

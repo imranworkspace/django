@@ -11,14 +11,23 @@
     <br>
     <center>
     <h2>Student Registration form</h2><br>
-    <form action="" method="post" novalidate>
+    <form method="post" novalidate>
         {% csrf_token %}
-        {{fm.as_p}}
-        <input type="submit" value="submit"/>
-    </form><br><hr>
-    
-        <a href="http://127.0.0.1:80/login/">Login Page</a>  |  
-        <a href="http://127.0.0.1:80/home/">Home Page</a></center>
+        {% for field in fm %}
+            <div class="mb-3">
+            <label class="form-label">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <div class="text-danger">{{ field.errors }}</div>
+            {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+    <hr>
+
+        <a href="http://127.0.0.1:80/login/" class="link-underline-info">Login Page</a>  |  
+        <a href="http://127.0.0.1:80/home/" class="link-underline-info">Home Page</a></center>
 
     </body>
 </html>
