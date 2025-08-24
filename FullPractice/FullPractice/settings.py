@@ -151,4 +151,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'  # or os.path.join(BASE_DIR, 'media') if BASE_DIR is not a Path

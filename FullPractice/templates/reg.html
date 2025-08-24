@@ -11,7 +11,8 @@
     <br>
     <center>
     <h2>Student Registration form</h2><br>
-    <form method="post" novalidate>
+    <!-- <form method="post" novalidate> -->
+    <form method="post" novalidate  enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in fm %}
             <div class="mb-3">

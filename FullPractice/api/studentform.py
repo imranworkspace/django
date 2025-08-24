@@ -52,14 +52,14 @@ class StudentForm(forms.Form):
     agree_terms = forms.NullBooleanField(label='I Agreed')
 
     GENDER_CHOICE = [
-        ('m', 'Male'),
-        ('f', 'Female')
+        ('male', 'Male'),
+        ('female', 'Female')
     ]
 
     INTERESTS_CHOICE = [
-        ('c', 'Cricket'),
-        ('f', 'Football'),
-        ('r', 'Reading')
+        ('cricket', 'Cricket'),
+        ('football', 'Football'),
+        ('reading', 'Reading')
     ]
 
     # Choice-related fields
@@ -77,7 +77,7 @@ class StudentForm(forms.Form):
     )
 
     # File and URL fields
-    profile_image = forms.ImageField(
+    profile_pic = forms.ImageField(
         label='Profile Pic',
         required=False,
         widget=forms.ClearableFileInput()
@@ -129,7 +129,7 @@ class StudentForm(forms.Form):
     )
 
     # marriedornot=forms.RadioSelect(label='Married or Not',widget=forms.TextInput(attrs={'type':"radio"}))
-    MARRIED_CHOICES = [('yes', 'Married'),('no', 'Unmarried')]
+    MARRIED_CHOICES = [('True', 'Married'),('False', 'Unmarried')]
 
     marriedornot = forms.ChoiceField(
         label='Marital Status',

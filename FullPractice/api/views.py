@@ -10,22 +10,26 @@ home_page='home.html'
 
 def registrationForm(request):
     if request.method=='POST':
-        fm=StudentForm(request.POST)
+        # request.FILES for profile image and resume
+        fm=StudentForm(request.POST,request.FILES)
         if fm.is_valid():
             nm=fm.cleaned_data['name']
             em=fm.cleaned_data['email']
             pw=fm.cleaned_data['password']
             pincode=fm.cleaned_data['pincode']
             dob=fm.cleaned_data['dob']
+
             appointment_time = fm.cleaned_data['appointment_time']
             appointment_date=fm.cleaned_data['appointment_date']
             appointment_datetime=fm.cleaned_data['appointment_datetime']
             is_agreed=fm.cleaned_data['is_agreed']
             agree_terms=fm.cleaned_data['agree_terms']
             gender=fm.cleaned_data['gender']
+
             interests=fm.cleaned_data['interests']
-            profile_image=fm.cleaned_data['profile_image']
+            profile_pic=fm.cleaned_data['profile_pic']
             resume=fm.cleaned_data['resume']
+            
             website=fm.cleaned_data['website']
             mobile_no=fm.cleaned_data['mobile_no']
             
@@ -46,7 +50,7 @@ def registrationForm(request):
             print('agree_terms',agree_terms)
             print('gender',gender)
             print('interests',interests)
-            print('profile_image',profile_image)
+            print('profile_pic',profile_pic)
             print('resume',resume)
             print('website',website)
             print('mobile_no',mobile_no)
@@ -59,7 +63,31 @@ def registrationForm(request):
             print('split_date_time',split_date_time)
 
             # put data into db 
-            stud_create=StudentModel(name=nm,email=em,password=pw)
+            stud_create=StudentModel(
+                name=nm,
+                email=em,
+                password=pw,
+                pincode=pincode,
+                dob=dob,
+                appointment_time=appointment_time,
+                appointment_date=appointment_date,
+                appointment_datetime=appointment_datetime,
+                is_agreed=is_agreed,
+                
+                gender=gender,
+                interests=interests,
+                profile_pic=profile_pic,
+                resume=resume,
+
+                website=website,
+                mobile_no=mobile_no,
+                slug=slug,
+
+                ip_address=ip_address,
+                rating=rating,
+                content=content,
+                marriedornot=marriedornot,
+                split_date_time=split_date_time)
             stud_create.save()
             return redirect(login_url)
         else:
