@@ -19,8 +19,11 @@ RUN pip install -r requirnments.txt
 # Copy project files
 COPY . /fullpractice/
 
-# run commands from entrypoint.sh file 
+# Copy entrypoint.sh
 COPY entrypoint.sh /entrypoint.sh
+
+# Give execute permissions
 RUN chmod +x /entrypoint.sh
 
+# Set entrypoint
 ENTRYPOINT ["/entrypoint.sh"]
