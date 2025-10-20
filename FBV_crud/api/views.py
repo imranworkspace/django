@@ -49,7 +49,10 @@ def studApiView(request,pk=None):
             password=seri.validated_data['password']
             stud_create = StudentModel.objects.create(name=name,email=email,password=password)
             stud_create.save()
-            return Response({'response':'student added successfully'},status=status.HTTP_201_CREATED)
+            # return Response({'response':'student added successfully'},status=status.HTTP_201_CREATED)
+            # for unit-testing
+            return Response(StudentSerializer(stud_create).data, status=status.HTTP_201_CREATED)
+
         else:
             return Response({'response':'student records not correct'},status=status.HTTP_204_NO_CONTENT)
     elif request.method=='PUT':
